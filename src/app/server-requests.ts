@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Task } from "./task";
 import { response } from "express";
+import { Observable } from "rxjs";
 
 //@Injectable({providedIn: 'root'})
 @Injectable({providedIn: 'root'})
@@ -26,25 +27,27 @@ export class ServerRequests {
   }
 
 
-  changeToDone(task: Task){
-    this.http.put<any>('http://127.0.0.1:3000/task/changeToDone',task)
-    .subscribe((response) => {
-      console.log(response);
-    });
+  changeToDone(task: Task): Observable<any>{
+    return this.http.put('http://127.0.0.1:3000/task/changeToDone',task);
+   
     
   }
-  changeToUndone(task: Task){
-    this.http.put<any>('http://127.0.0.1:3000/task/changeToUndone',task)
+  changeToUndone(task: Task): Observable<any>{
+    return  this.http.put('http://127.0.0.1:3000/task/changeToUndone',task); 
+    /*this.http.put<any>('http://127.0.0.1:3000/task/changeToUndone',task)
     .subscribe((response) => {
       console.log(response);
     })
+      */
   }
 
 
 
-  getTasks(): Task[]{
+  getTasks(): Observable<Task[]>{
+
+    return this.http.get<Task[]>('http://127.0.0.1:3000/task/gettasks');
     
-    let toReturn: Task[] = [];
+    /*let toReturn: Observable <Task[]> = [];
 
     this.http.get<any[]>('http://127.0.0.1:3000/task/gettasks').subscribe(
       (data) => {
@@ -55,7 +58,7 @@ export class ServerRequests {
         console.error('Error fetching tasks:', error); // Handle error
       }
     );
-    return toReturn;
+    return toReturn;*/
   }
 
 

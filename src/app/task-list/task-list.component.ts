@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { Task } from '../task';
 import { ServerRequests } from '../server-requests';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'task-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
-  tasks :Task[];
+  tasks :Observable<Task[]>;
+  //tasks$: Observable<Task[]>;
 
   constructor(private serverRequests: ServerRequests) {
     
@@ -41,10 +45,14 @@ export class TaskListComponent {
   
 
   changeToDone(task : Task){
-    this.serverRequests.changeToDone(task);
+    this.serverRequests.changeToDone(task).subscribe(() =>{
+      this.tasks = this.serverRequests.getTasks();
+    });
   }
   changeToUndone(task: Task){
-    this.serverRequests.changeToUndone(task);
+    this.serverRequests.changeToUndone(task).subscribe(() =>{
+      this.tasks = this.serverRequests.getTasks();
+    });
   }
 
   

@@ -1,33 +1,28 @@
 
 <div id="task-list">
     
-    <ul>
-    @for (task of tasks; track task.id){
-        <li>
-            @if (task.done)
-            {
-                <!--<span>&#10005;</span>-->
-                
-                Done {{task.taskName}}
-                
-                {{task.done}}
-                <button id = "state-button" (click)="changeToUndone(task)">undo</button>
-                
-                
-            }@else {
-               <!-- <span>&#10003;</span> -->
-                Not Done 
-                {{task.taskName}}
-                
-                {{task.done}}
-                <button id = "state-button" (click)="changeToDone(task)"> Set done</button>
-            }
-
-        </li>
-    }@empty {
-        <li>There are no items.</li>
-    }
-</ul>
+  <ul class="task-list">
+    <li *ngFor="let task of tasks | async" class="task-item">
+      <div *ngIf="task.done; else notDone" class="task-done">
+        <span class="status">✔</span> 
+        <span class="task-name">{{ task.taskName }}</span>
+        <button class="state-button undo" (click)="changeToUndone(task)">Undo</button>
+      </div>
+      <ng-template #notDone>
+        <div class="task-not-done">
+          <span class="status">✖</span>
+          <span class="task-name">{{ task.taskName }}</span>
+          <button class="state-button done" (click)="changeToDone(task)">Set Done</button>
+        </div>
+      </ng-template>
+    </li>
+  
+    <li class="no-items" *ngIf="(tasks | async)?.length === 0">
+      There are no items.
+    </li>
+  </ul>
+  
+  
   
 </div>
 
