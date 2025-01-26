@@ -40,4 +40,13 @@ export class TaskListComponent {
 
   
 
+  changeToDone(task : Task){
+    this.serverRequests.changeToDone(task);
+  }
+  changeToUndone(task: Task){
+    this.serverRequests.changeToUndone(task);
+  }
+
+  
+
 }

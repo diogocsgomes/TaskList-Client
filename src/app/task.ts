@@ -5,13 +5,13 @@ import { ServerRequests } from "./server-requests";
 export class Task {
     taskName: string;
     id: number;
-    toDo: boolean;
+    done: boolean;
 
-    constructor( idNum: number, taskDesc: string,done: boolean)
+    constructor( idNum: number, taskDesc: string,isDone: boolean)
     {
         this.taskName = taskDesc;
         this.id = idNum;
-        this.toDo = done;
+        this.done = isDone;
     }
     
 

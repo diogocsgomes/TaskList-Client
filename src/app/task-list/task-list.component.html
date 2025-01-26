@@ -3,11 +3,31 @@
     
     <ul>
     @for (task of tasks; track task.id){
-        <li>{{task.taskName}}</li>
+        <li>
+            @if (task.done)
+            {
+                <!--<span>&#10005;</span>-->
+                
+                Done {{task.taskName}}
+                
+                {{task.done}}
+                <button id = "state-button" (click)="changeToUndone(task)">undo</button>
+                
+                
+            }@else {
+               <!-- <span>&#10003;</span> -->
+                Not Done 
+                {{task.taskName}}
+                
+                {{task.done}}
+                <button id = "state-button" (click)="changeToDone(task)"> Set done</button>
+            }
+
+        </li>
     }@empty {
         <li>There are no items.</li>
     }
 </ul>
-    <button (click)="buttonClick()">click me</button>
+  
 </div>
 
