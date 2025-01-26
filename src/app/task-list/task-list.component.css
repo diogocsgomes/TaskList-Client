@@ -1,5 +1,4 @@
-#welcome{
+#task-list{
     display: flex;
-    color: rgba(196, 164, 126, 0.882);
     justify-content: center;
 }
