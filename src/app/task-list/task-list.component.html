@@ -1,5 +1,11 @@
 
 <div id="task-list">
+
+  <form [formGroup]="taskForm" (submit)="addTask()">
+  <label for="task-Desc">Task:</label>
+  <input type="text"  formControlName="taskDesc">
+  <button type="submit">Add Task</button>  
+  </form>
     
   <ul class="task-list">
     <li *ngFor="let task of tasks | async" class="task-item">

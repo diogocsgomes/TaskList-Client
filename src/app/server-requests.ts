@@ -48,6 +48,11 @@ export class ServerRequests {
   }
 
 
+  addTask(taskName: string): Observable<void>{
+    return this.http.post<void>('http://127.0.0.1:3000/task/addtask',new Task(-1,taskName,false));
+  }
+
+
   getTasks(): Observable<Task[]>{
 
     return this.http.get<Task[]>('http://127.0.0.1:3000/task/gettasks');
