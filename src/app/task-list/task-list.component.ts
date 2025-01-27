@@ -55,6 +55,13 @@ export class TaskListComponent {
     });
   }
 
+  deleteTask(task: Task){
+    this.serverRequests.deleteTask(task).subscribe(() => 
+    {
+      this.tasks = this.serverRequests.getTasks();
+    })
+  }
+
   
 
 }

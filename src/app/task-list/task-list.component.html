@@ -3,6 +3,7 @@
     
   <ul class="task-list">
     <li *ngFor="let task of tasks | async" class="task-item">
+      <button (click)="deleteTask(task)" >Delete</button>
       <div *ngIf="task.done; else notDone" class="task-done">
         <span class="status">✔</span> 
         <span class="task-name">{{ task.taskName }}</span>

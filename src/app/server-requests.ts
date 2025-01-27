@@ -42,6 +42,11 @@ export class ServerRequests {
   }
 
 
+  deleteTask(task:Task): Observable<void>{
+    console.log('sending a request to delete' +task.id);
+    return this.http.delete<void>('http://127.0.0.1:3000/task/delete/'+task.id);
+  }
+
 
   getTasks(): Observable<Task[]>{
 
